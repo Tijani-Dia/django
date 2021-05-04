@@ -11,3 +11,7 @@ class NoReverseMatch(Exception):
 
 class DoesNotResolve(Resolver404):
     pass
+
+
+class ResolutionAborted(Resolver404):
+    pass

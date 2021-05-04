@@ -42,6 +42,10 @@ def not_overlapping_view(request, keyword):
     raise DoesNotResolve
 
 
+def terminal_view(request, *args, **kwargs):
+    return HttpResponse("Fallback")
+
+
 def pass_resolver_match_view(request, *args, **kwargs):
     response = HttpResponse()
     response.resolver_match = request.resolver_match
