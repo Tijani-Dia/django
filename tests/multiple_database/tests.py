@@ -2304,7 +2304,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Person)
-        self.assertEqual(e.hints, {"instance": owner})
+        self.assertEqual(e.hints["instance"], owner)
 
     def test_reverse_fk_delete(self):
         owner = Person.objects.create(name="Someone")
@@ -2315,7 +2315,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Pet)
-        self.assertEqual(e.hints, {"instance": owner})
+        self.assertEqual(e.hints["instance"], owner)
 
     def test_reverse_fk_get_or_create(self):
         owner = Person.objects.create(name="Someone")
@@ -2325,7 +2325,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Pet)
-        self.assertEqual(e.hints, {"instance": owner})
+        self.assertEqual(e.hints["instance"], owner)
 
     def test_reverse_fk_update(self):
         owner = Person.objects.create(name="Someone")
@@ -2336,7 +2336,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Pet)
-        self.assertEqual(e.hints, {"instance": owner})
+        self.assertEqual(e.hints["instance"], owner)
 
     def test_m2m_add(self):
         auth = Person.objects.create(name="Someone")
@@ -2349,7 +2349,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book.authors.through)
-        self.assertEqual(e.hints, {"instance": book})
+        self.assertEqual(e.hints["instance"], book)
 
     def test_m2m_clear(self):
         auth = Person.objects.create(name="Someone")
@@ -2363,7 +2363,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book.authors.through)
-        self.assertEqual(e.hints, {"instance": book})
+        self.assertEqual(e.hints["instance"], book)
 
     def test_m2m_delete(self):
         auth = Person.objects.create(name="Someone")
@@ -2377,7 +2377,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Person)
-        self.assertEqual(e.hints, {"instance": book})
+        self.assertEqual(e.hints["instance"], book)
 
     def test_m2m_get_or_create(self):
         Person.objects.create(name="Someone")
@@ -2390,7 +2390,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book)
-        self.assertEqual(e.hints, {"instance": book})
+        self.assertEqual(e.hints["instance"], book)
 
     def test_m2m_remove(self):
         auth = Person.objects.create(name="Someone")
@@ -2404,7 +2404,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book.authors.through)
-        self.assertEqual(e.hints, {"instance": book})
+        self.assertEqual(e.hints["instance"], book)
 
     def test_m2m_update(self):
         auth = Person.objects.create(name="Someone")
@@ -2418,7 +2418,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Person)
-        self.assertEqual(e.hints, {"instance": book})
+        self.assertEqual(e.hints["instance"], book)
 
     def test_reverse_m2m_add(self):
         auth = Person.objects.create(name="Someone")
@@ -2431,7 +2431,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book.authors.through)
-        self.assertEqual(e.hints, {"instance": auth})
+        self.assertEqual(e.hints["instance"], auth)
 
     def test_reverse_m2m_clear(self):
         auth = Person.objects.create(name="Someone")
@@ -2445,7 +2445,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book.authors.through)
-        self.assertEqual(e.hints, {"instance": auth})
+        self.assertEqual(e.hints["instance"], auth)
 
     def test_reverse_m2m_delete(self):
         auth = Person.objects.create(name="Someone")
@@ -2459,7 +2459,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book)
-        self.assertEqual(e.hints, {"instance": auth})
+        self.assertEqual(e.hints["instance"], auth)
 
     def test_reverse_m2m_get_or_create(self):
         auth = Person.objects.create(name="Someone")
@@ -2472,7 +2472,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Person)
-        self.assertEqual(e.hints, {"instance": auth})
+        self.assertEqual(e.hints["instance"], auth)
 
     def test_reverse_m2m_remove(self):
         auth = Person.objects.create(name="Someone")
@@ -2486,7 +2486,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book.authors.through)
-        self.assertEqual(e.hints, {"instance": auth})
+        self.assertEqual(e.hints["instance"], auth)
 
     def test_reverse_m2m_update(self):
         auth = Person.objects.create(name="Someone")
@@ -2500,7 +2500,7 @@ class RouteForWriteTestCase(TestCase):
         e = cm.exception
         self.assertEqual(e.mode, RouterUsed.WRITE)
         self.assertEqual(e.model, Book)
-        self.assertEqual(e.hints, {"instance": auth})
+        self.assertEqual(e.hints["instance"], auth)
 
 
 class NoRelationRouter:

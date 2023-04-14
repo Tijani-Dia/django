@@ -90,9 +90,11 @@ ALWAYS_INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.admin.apps.SimpleAdminConfig",
     "django.contrib.staticfiles",
+    "dj_tracker",
 ]
 
 ALWAYS_MIDDLEWARE = [
+    "dj_tracker.middleware.DjTrackerMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -255,6 +257,8 @@ def setup_collect_tests(start_at, start_after, test_labels=None):
 
     # Load all the ALWAYS_INSTALLED_APPS.
     django.setup()
+
+    #django.core.management.call_command("migrate", database="trackings")
 
     # This flag must be evaluated after django.setup() because otherwise it can
     # raise AppRegistryNotReady when running gis_tests in isolation on some
@@ -786,6 +790,6 @@ if __name__ == "__main__":
                 options.timing,
                 options.shuffle,
             )
-        time_keeper.print_results()
+        #time_keeper.print_results()
         if failures:
             sys.exit(1)

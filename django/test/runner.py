@@ -271,10 +271,12 @@ failure and get a correct traceback.
 
     def startTestRun(self):
         super().startTestRun()
+        print("starting")
         self.events.append(("startTestRun",))
 
     def stopTestRun(self):
         super().stopTestRun()
+        print("Stooping")
         self.events.append(("stopTestRun",))
 
     def startTest(self, test):
@@ -416,7 +418,6 @@ def _init_worker(
         _worker_id = counter.value
 
     start_method = multiprocessing.get_start_method()
-
     if start_method == "spawn":
         if process_setup and callable(process_setup):
             if process_setup_args is None:
@@ -1005,6 +1006,7 @@ class DiscoverRunner:
                     (alias, serialized_rollback or databases.get(alias, False))
                     for alias in test_databases
                 )
+        databases.pop("trackings", None)
         return databases
 
     def get_databases(self, suite):

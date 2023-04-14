@@ -11,6 +11,8 @@
 # situations, so it is recommended to run the test suite against as many
 # database backends as possible.  You may want to create a separate settings
 # file for each of the backends you test against.
+import os
+RUNTESTS_DIR = os.path.abspath(os.path.dirname(__file__))
 
 DATABASES = {
     "default": {
@@ -19,7 +21,13 @@ DATABASES = {
     "other": {
         "ENGINE": "django.db.backends.sqlite3",
     },
+    "trackings": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(RUNTESTS_DIR, "trackingsdb"),
+    },
 }
+
+DATABASE_ROUTERS = ["dj_tracker.db_router.DjTrackerRouter"]
 
 SECRET_KEY = "django_tests_secret_key"
 

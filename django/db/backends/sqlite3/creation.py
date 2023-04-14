@@ -135,8 +135,9 @@ class DatabaseCreation(BaseDatabaseCreation):
         start_method = multiprocessing.get_start_method()
         if start_method == "fork":
             # Update settings_dict in place.
-            self.connection.settings_dict.update(settings_dict)
-            self.connection.close()
+            if self.connection.alias != "trackings":
+                self.connection.settings_dict.update(settings_dict)
+                self.connection.close()
         elif start_method == "spawn":
             alias = self.connection.alias
             connection_str = (

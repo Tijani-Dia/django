@@ -173,7 +173,7 @@ def setup_databases(
     *,
     time_keeper=None,
     keepdb=False,
-    debug_sql=False,
+    debug_sql=True,
     parallel=0,
     aliases=None,
     serialized_aliases=None,
@@ -477,6 +477,8 @@ class override_settings(TestContextDecorator):
                 raise
         override = UserSettingsHolder(settings._wrapped)
         for key, new_value in self.options.items():
+            if key == "DATABASE_ROUTERS":
+                new_value.insert(0, "dj_tracker.db_router.DjTrackerRouter")
             setattr(override, key, new_value)
         self.wrapped = settings._wrapped
         settings._wrapped = override
